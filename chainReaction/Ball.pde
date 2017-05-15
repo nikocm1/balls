@@ -51,24 +51,27 @@ class Ball {
 
   void reaction() {
     if (state == 1) {
-      rad += 2;
-      
+      rad += 1;
     }
-    if (rad >= 250) {
-        state = 2;
-      }
+    if (rad >= 100) {
+      state = 2;
+    }
     if (state == 2) {
-      rad -= 2;
+      rad -= 1;
     }
+    if (rad == -10) {
+      state = 3;
+    }
+    
   }
 
-  void checkCollided(){
-  for(int i = 0; i < balls.size(); i++){
-      if(     (dist(balls.get(i).x,balls.get(i).y,x,y) <= balls.get(i).rad)){
-        balls.get(i).state = 1;
-        
+  void checkCollided(int i) {
+      for (int j = 0; j < balls.size(); j++) {
+        if (  (balls.get(j).state != 0) &&  
+          (dist(balls.get(i).x, balls.get(i).y, balls.get(j).x, balls.get(j).y) <= balls.get(j).rad - balls.get(i).rad )) {
+          balls.get(i).state = 1;
+        }
       }
-  
+    }
   }
-}
-} 
+ 

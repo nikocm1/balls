@@ -16,9 +16,10 @@ void draw() {
     
 
     if (reactionStarted) {
-
-      if (balls.get(i).state == 1) {
-        balls.get(i).checkCollided();
+      if(balls.get(i).state == 0) {
+                balls.get(i).checkCollided(i);
+      }
+      else if (balls.get(i).state == 1 || balls.get(i).state == 2) {
         balls.get(i).reaction();
         balls.get(i).dx = 0;
         balls.get(i).dy = 0;
